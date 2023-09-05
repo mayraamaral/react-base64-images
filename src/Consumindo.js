@@ -5,9 +5,7 @@ export function Consumindo() {
 
   useEffect(() => {
     // Faz a requisição para a API
-    fetch(
-      "http://vemser-dbc.dbccompany.com.br:39000/vemser/vs12-caramelos-back/produto/19"
-    )
+    fetch("http://localhost:8080/produto/bebida/37")
       .then((response) => response.json()) // Converte a resposta para JSON
       .then((data) => {
         // Obtém o valor do atributo "imagem" e define no estado "base64"

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export function Enviando() {
@@ -8,29 +9,29 @@ export function Enviando() {
     if (e.imagem[0]) {
       console.log(e.imagem[0]);
       reader.readAsDataURL(e.imagem[0]);
-
       reader.onload = async () => {
         const base64 = reader.result;
-        console.log(reader.result);
+        console.log(base64);
 
         const bebida = {
-          nome: "Garrafinha",
+          nome: "Pitchulinha",
           descricao: "Refrigerante",
           imagem: base64,
-          quantidade: 2,
+          quantidade: 1,
           preco: 5.9,
           tipoProduto: "BEBIDA",
           marca: "PEPSI",
-          tamanhoProduto: "PEQUENO",
+          tamanhoProduto: "MEDIO",
         };
 
-        fetch(
-          "http://vemser-dbc.dbccompany.com.br:39000/vemser/vs12-caramelos-back/produto/bebida/15",
-          {
-            method: "PUT",
-            body: JSON.stringify(bebida),
-          }
-        );
+        fetch("http://localhost:8080/produto/bebida/37", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(bebida),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error(error));
       };
     }
   };
